@@ -44,6 +44,13 @@ div img {
 	margin-left: 4%;
 	flex: 0 0 92%;
 }
+/* added specialCol class to target col-1 and col-2 for when resizing happens, could not figure out how to resize some 
+of col-1/col-2 without affecting the others */
+
+[class*="specialCol-"] {
+	margin-left: 4%;
+	flex: 0 0 92%;
+}
 
 /* Add background colors to see how much space each column is taking */
 
@@ -51,7 +58,15 @@ div img {
 	background-color: #A3CDD9;
 }
 
+.specialCol-1 {                   /* added specialCol-1 to target col-1 when resizing happens  */
+	background-color: #A3CDD9;
+}
+
 .col-2 {
+	background-color: #FFFCE6;
+}
+
+.specialCol-2 {                  /* added specialCol-2 to target col-2 to when resizing happens  */
 	background-color: #FFFCE6;
 }
 
@@ -69,18 +84,26 @@ div img {
   .col-1 {
 		flex: 0 0 44%;
 	}
-  
-  
+
+  .specialCol-1 {
+		flex: 0 0 92%
+  }
+   
   
 	.col-2 {
 		flex: 0 0 44%;
-		order: -1;    /* change order to 2-1-1*/
+		/
+	}
+
+	.specialCol-2 {
+		flex: 0 0 92%;
+	order: -1;    /* change order to 2-1-1*/
 	}
 	   
 
 
 	.col-3 {
-		flex: 0 0 68%;
+		flex: 0 0 92%;
 	}
 
 	.col-4 {
@@ -99,7 +122,10 @@ div img {
  	.col-1 {
 		flex: 0 0 20%;
 	}
-  
+
+  	.specialCol-1 {
+		flex: 0 0 20%;
+	}
   
   
 	.col-2 {
@@ -107,6 +133,10 @@ div img {
 		order: 0;     /* reset order to 1-2-1 */
 	}
 
+	.specialCol-2 {
+		flex: 0 0 44%;
+		order: 0;
+	}
 
 	.col-3 {
 		flex: 0 0 68%;
