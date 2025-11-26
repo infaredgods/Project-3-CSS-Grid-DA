@@ -1,165 +1,166 @@
-/* Border box declaration 
-https://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
-html {
-  box-sizing: border-box;
-}
-/* inherit border-box on all elements in the universe and before and after
- */
-*, 
-*:before, 
-*:after {
-  box-sizing: inherit;
-}
-
-body {
-	font-family: Arial, Geneva, sans-serif;
-}
-a {
-	color: #2772B0;
-}
 .wrapper {
-	width: 97%;
-	max-width: 1200px;
-	margin: 0 auto;
-	float: none;
-	background-color: #fff;
-}
+	font-family: Arial, sans-serif;
+	display: grid;
+	gap: 10px;
 
+	justify-items: center;
+
+	
+
+}
+.wrapper>*:not(.diamond-one-row){
+	padding: 1em;
+	border-radius: 1em;
+}
 div img {
 	width: 100%;
 	max-width: 225px; 
 }
 
 /* grid system -- mobile first! */
-/* flex contatiner */
 
-.row {
-	display: flex;
-	flex-flow: row wrap;
-}
-/* new class to make 5 images shaped like a diamond in one row */
+
+/* Creates a 3-column grid  that places images 1 & 2 in top left/right
+   image 3 in the center column
+   images 4 & 5 in bottom left/right*/
 .diamond-one-row {
-  display: flex;
-  justify-content: center; /* centers the images horizontally */
-  gap: 20px; /* adds space between images */
-  margin: 40px 0;
-  flex-wrap: nowrap; /* makes sure that the images stay in one row and not drop into new lines*/
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+
+  width: fit-content; /* shrinks width so grid is only as wide as diamond */
+  margin: 40px 0; /* centers the container */
+  
 }
-/* Style the images inside the diamond-one-row container */
+
+/* Style the images inside the container */
 .diamond-one-row img {
   width: 100%;
-  max-width: 140px;
+  max-width: 200px;
   padding: 10px;
   background-color: aquamarine;
   
 }
 
-/* Create the diamond shape using vertical offsets */
+
 .diamond-one-row img:nth-child(1) {
-  margin-top: 20px;
+  	grid-row: 1;
+  	grid-column: 1;
 }
 
 .diamond-one-row img:nth-child(2) {
-  margin-top: 0px;
+  	grid-row: 3;
+  	grid-column: 1;
 }
 
-.diamond-one-row img:nth-child(3) {
-  margin-top: -30px;  /* top of diamond */
+.diamond-one-row img:nth-child(3) {   /*middle image*/
+	grid-row: 2;
+  	grid-column: 2;
 }
+    
 
 .diamond-one-row img:nth-child(4) {
-  margin-top: 0px;
+  	grid-row: 1;
+  	grid-column: 3;
 }
 
 .diamond-one-row img:nth-child(5) {
-  margin-top: 20px;
+  	grid-row: 3;
+  	grid-column: 3;
 }
 
 /* Mobile fallback */
 @media (max-width: 600px) {
   .diamond-one-row {
-    flex-wrap: wrap;
-    justify-content: center;
+    grid-template-columns: 1fr; /* single column layout */
   }
 
-  .diamond-one-row img {
-    margin-top: 0;
-    max-width: 200px;
+  .diamond-one-row img:nth-child(n) {
+    grid-row: auto;
+    grid-column: 1;
   }
 }
 
 
-/* attribute selector to give some margin between columns and apply styles to flex items */
-
-[class*="col-"] {
-	margin-left: 4%;
-	flex: 0 0 92%;
-}
-/* added specialCol class to target col-1 and col-2 for when resizing happens, could not figure out how to resize some 
-of col-1/col-2 without affecting the others */
-
-[class*="specialCol-"] {
-	margin-left: 4%;
-	flex: 0 0 92%;
+.metroidvania {
+	grid-column: 1 / 2;
+	grid-row: 1 / 2;
 }
 
+.jrpg {
+	grid-column: 1 / 2;
+	grid-row: 1 / 3;
+}
+
+
+
+.multiplayer {
+	grid-column: 1 / 2;
+	grid-row: 2 / 3;
+}
 /* Add background colors to see how much space each column is taking */
 
-.col-1 {
+.metroidvania{
 	background-color: #A3CDD9;
 }
 
-.specialCol-1 {                   /* added specialCol-1 to target col-1 when resizing happens  */
-	background-color: #A3CDD9;
-}
 
-.col-2 {
+.jrpg {
 	background-color: #FFFCE6;
 }
 
-.specialCol-2 {                  /* added specialCol-2 to target col-2 to when resizing happens  */
-	background-color: #FFFCE6;
-}
 
-.col-3 {
+.multiplayer {
 	background-color:aqua;
 }
 
-.col-4 {
+.open-world {
 	background-color:coral;
 }
 
+.souls-like {
+	background-color:lightgreen;
+}
+
+/*mobile default*/
+.metroidvania,
+.jrpg,
+.multiplayer,
+.open-world,
+.souls-like {
+	grid-column: auto;
+	grid-row: auto;
+}
 
 /* Tablet Landscape Screen Sizes */
-@media only screen and (min-width: 480px)  {
+@media (min-width: 650px)  {
 	
-  .col-1 {
-		flex: 0 0 44%;
-	}
-
-  .specialCol-1 {
-		flex: 0 0 92%
-  }
-   
+	
+  .metroidvania {
+		grid-column: 1 /2;
+		grid-row: 1 / 2;
+	}   
   
-	.col-2 {
-		flex: 0 0 44%;
+	.jrpg {
+		grid-column: 2 / 3;
+		grid-row: 1 / 3;
 		
 	}
 
-	.specialCol-2 {
-		flex: 0 0 92%;
-	order: -1;    /* change order to 2-1-1*/
-	}
-	   
 
-
-	.col-3 {
-		flex: 0 0 92%;
+	.multiplayer {
+		grid-column: 1 / 2;
+		grid-row: 2 / 3;
 	}
 
-	.col-4 {
-		flex: 0 0 92%;
+	.open-world {
+		grid-column: 1 / 2;
+		grid-row: 3 / 4;
+	}
+
+	.souls-like {
+		grid-column: 2 / 3;
+		grid-row: 3 / 4;
 	}
   
   
@@ -168,34 +169,34 @@ of col-1/col-2 without affecting the others */
 
 }
 /* Desktop screen Sizes */
-@media only screen and (min-width: 768px) {
+@media (min-width: 1000px) {
+	
   
   
- 	.col-1 {
-		flex: 0 0 20%;
-	}
-
-  	.specialCol-1 {
-		flex: 0 0 20%;
+ 	.metroidvania {
+		grid-column: 2 / 3;
+		grid-row: 2 / 3;
+		
 	}
   
-  
-	.col-2 {
-		flex: 0 0 44%;
-		order: 0;     /* reset order to 1-2-1 */
+	.jrpg {
+		grid-column: 1 / 2;
+		grid-row: 1 / 3;
 	}
 
-	.specialCol-2 {
-		flex: 0 0 44%;
-		order: 0;
+
+	.multiplayer {
+		grid-column: 2 / 3;
+		grid-row: 1 / 2 ;
 	}
 
-	.col-3 {
-		flex: 0 0 68%;
+	.open-world {
+		grid-column: 3 / 4;
+		grid-row: 1 / 2;
 	}
-
-	.col-4 {
-		flex: 0 0 92%;
+	.souls-like {
+		grid-column: 3 / 4;
+		grid-row: 2 / 3;
 	}
 
 	
