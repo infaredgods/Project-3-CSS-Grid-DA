@@ -18,16 +18,20 @@ div img {
 }
 
 /* grid system -- mobile first! */
-
-
 /* Creates a 3-column grid  that places images 1 & 2 in top left/right
    image 3 in the center column
    images 4 & 5 in bottom left/right*/
-.diamond-one-row {
+.diamond-row {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, auto);
-  gap: 20px;
+
+  grid-template-columns: repeat(5, 1fr);  /* defines the exact number of columns and their sizes*/
+  grid-template-rows: repeat(3, auto);    /* defines the exact number of rows and their sizes*/
+
+/*this property lets me visually draw my layout using ASCII art*/
+  grid-template-areas:
+    ".   .   a   .   ."
+    ".   b   c   d   ."
+    ".   .   e   .   .";
 
   width: fit-content; /* shrinks width so grid is only as wide as diamond */
   margin: 40px auto; /* centers the container */
@@ -35,7 +39,7 @@ div img {
 }
 
 /* Style the images inside the container */
-.diamond-one-row img {
+.diamond-row img {
   width: 100%;
   max-width: 200px;
   padding: 1em;
@@ -44,43 +48,20 @@ div img {
   
 }
 
-/*top image*/
-.diamond-one-row img:nth-child(1) {
-  	grid-row: 1;
-  	grid-column: 3;/*center*/
-}
+.diamond-row img:nth-child(1) { grid-area: a; }
+.diamond-row img:nth-child(2) { grid-area: b; }
+.diamond-row img:nth-child(3) { grid-area: c; }
+.diamond-row img:nth-child(4) { grid-area: d; }
+.diamond-row img:nth-child(5) { grid-area: e; }
 
-/*left middle image*/
-.diamond-one-row img:nth-child(2) {
-  	grid-row: 2;
-  	grid-column: 2;
-}
-
-/*center middle image*/
-.diamond-one-row img:nth-child(3) {  
-	grid-row: 2;
-  	grid-column: 3;
-}
-    
-/*right middle image*/
-.diamond-one-row img:nth-child(4) {
-  	grid-row: 2;
-  	grid-column: 4;
-}
-
-/*bottom image*/
-.diamond-one-row img:nth-child(5) {
-  	grid-row: 3;
-  	grid-column: 3;
-}
 
 /* Mobile fallback */
 @media (max-width: 600px) {
-  .diamond-one-row {
+  .diamond-row {
     grid-template-columns: 1fr; /* single column layout */
   }
 
-  .diamond-one-row img:nth-child(n) {
+  .diamond-row img:nth-child(n) {
     grid-row: auto;
     grid-column: 1;
   }
