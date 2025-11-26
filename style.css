@@ -8,8 +8,8 @@
 	
 
 }
-.wrapper>*{
-	padding: 1em;
+.wrapper>*:not(.diamond-row){
+	padding: 0.5em;
 	border-radius: 1em;
 }
 div img {
@@ -23,8 +23,9 @@ div img {
    images 4 & 5 in bottom left/right*/
 .diamond-row {
   display: grid;
-
+  width: 100%;
   grid-template-columns: repeat(5, 1fr);  /* defines the exact number of columns and their sizes*/
+  padding:0;
   grid-template-rows: repeat(3, auto);    /* defines the exact number of rows and their sizes*/
 
 /*this property lets me visually draw my layout using ASCII art*/
