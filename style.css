@@ -8,7 +8,7 @@
 	
 
 }
-.wrapper>*:not(.diamond-one-row){
+.wrapper>*{
 	padding: 1em;
 	border-radius: 1em;
 }
@@ -25,11 +25,12 @@ div img {
    images 4 & 5 in bottom left/right*/
 .diamond-one-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, auto);
   gap: 20px;
 
   width: fit-content; /* shrinks width so grid is only as wide as diamond */
-  margin: 40px 0; /* centers the container */
+  margin: 40px auto; /* centers the container */
   
 }
 
@@ -37,33 +38,37 @@ div img {
 .diamond-one-row img {
   width: 100%;
   max-width: 200px;
-  padding: 10px;
+  padding: 1em;
+  border-radius: 1em;
   background-color: aquamarine;
   
 }
 
-
+/*top image*/
 .diamond-one-row img:nth-child(1) {
   	grid-row: 1;
-  	grid-column: 1;
+  	grid-column: 3;/*center*/
 }
 
+/*left middle image*/
 .diamond-one-row img:nth-child(2) {
-  	grid-row: 3;
-  	grid-column: 1;
-}
-
-.diamond-one-row img:nth-child(3) {   /*middle image*/
-	grid-row: 2;
+  	grid-row: 2;
   	grid-column: 2;
 }
-    
 
-.diamond-one-row img:nth-child(4) {
-  	grid-row: 1;
+/*center middle image*/
+.diamond-one-row img:nth-child(3) {  
+	grid-row: 2;
   	grid-column: 3;
 }
+    
+/*right middle image*/
+.diamond-one-row img:nth-child(4) {
+  	grid-row: 2;
+  	grid-column: 4;
+}
 
+/*bottom image*/
 .diamond-one-row img:nth-child(5) {
   	grid-row: 3;
   	grid-column: 3;
@@ -122,7 +127,7 @@ div img {
 	background-color:lightgreen;
 }
 
-/*mobile default*/
+/*mobile default, makes the items stack*/
 .metroidvania,
 .jrpg,
 .multiplayer,
